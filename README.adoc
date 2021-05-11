@@ -1,3 +1,8 @@
+[discrete]
+=== :warning: NOTE:
+This is a work in progress and is not yet to be used. See
+https://owletcare.atlassian.net/browse/COREE-156[COREE-156].
+
 = Developing Restful APIs: A Comprehensive Set of Guidelines by Zalando
 
 https://travis-ci.org/zalando/restful-api-guidelines[image:https://travis-ci.org/zalando/restful-api-guidelines.svg?branch=master[Build Status]]
