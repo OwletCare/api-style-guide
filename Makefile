@@ -42,7 +42,6 @@ assets:
 	mkdir -p $(DIRBUILDS);
 	cp -r assets $(DIRBUILDS)/assets;
 	cp -r models/* $(DIRBUILDS);
-	cp -r -n legacy/* $(DIRBUILDS);
 
 rules: check-rules
 	$(DIRSCRIPTS)/generate-rules-json.sh  | \
