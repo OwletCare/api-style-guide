@@ -1,4 +1,4 @@
-:stylesheet: zalando.css
+:stylesheet: style.css
 :source-highlighter: coderay
 :toc: macro
 :toclevels: 2
@@ -59,10 +59,10 @@
 :SRE-Tracing: https://github.bus.zalan.do/SRE/opentracing
 
 // Attribute to improve design of key words in titles.
-:MUST: pass:[<span class="must-keyword"><strong>MUST</strong></span>]
-:SHOULD: pass:[<span class="should-keyword"><strong>SHOULD</strong></span>]
-:MAY: pass:[<span class="may-keyword"><strong>MAY</strong></span>]
-:MUST-SHOULD: pass:[<span class="must-keyword"><strong>MUST</strong></span>/<span class="should-keyword"><strong>SHOULD</strong></span>]
+:MUST: pass:[<span class="must-keyword">MUST</span>]
+:SHOULD: pass:[<span class="should-keyword">SHOULD</span>]
+:MAY: pass:[<span class="may-keyword">MAY</span>]
+:MUST-SHOULD: pass:[<span class="must-keyword">MUST</span>/<span class="should-keyword">SHOULD</span>]
 
 // Attributes to improvement design of common table elements.
 :NO: pass:[<span class="must-keyword">&#x2717;</span> No]
