@@ -35,16 +35,16 @@ as if it came from the same hand.
 
 [#125]
 [#240]
-== {SHOULD} declare enum values using UPPER_SNAKE_CASE string 
+== {SHOULD} declare enum values using UPPER_SNAKE_CASE string
 
-Enumerations should be represented as `string` typed OpenAPI definitions of 
+Enumerations should be represented as `string` typed OpenAPI definitions of
 request parameters or model properties.
-Enum values (using `enum` or {x-extensible-enum}) need to consistently use 
-the upper-snake case format, e.g. `VALUE` or `YET_ANOTHER_VALUE`. 
+Enum values (using `enum` or {x-extensible-enum}) need to consistently use
+the upper-snake case format, e.g. `VALUE` or `YET_ANOTHER_VALUE`.
 This approach allows to clearly distinguish values from properties or other elements.
 
-**Exception:** This rule does not apply for case sensitive values sourced from outside 
-API definition scope, e.g. for language codes from {ISO-639-1}[ISO 639-1], or when 
+**Exception:** This rule does not apply for case sensitive values sourced from outside
+API definition scope, e.g. for language codes from {ISO-639-1}[ISO 639-1], or when
 declaring possible values for a <<137,rule 137>> [`sort` parameter].
 
 [#216]
@@ -194,7 +194,7 @@ Use the date and time formats defined by {RFC-3339}#section-5.6[RFC 3339]:
 example `2015-05-28T14:07:17Z`
 
 Note that the
-https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types[OpenAPI format] 
+https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types[OpenAPI format]
 "date-time" corresponds to "date-time" in the RFC) and `2015-05-28`
 for a date (note that the OpenAPI format "date" corresponds to "full-date" in
 the RFC). Both are specific profiles, a subset of the international standard

@@ -1,24 +1,19 @@
-DOCKER := asciidoctor/docker-asciidoctor:latest
-DIRMOUNTS := /documents
 DIRCONTENTS := chapters
 DIRSCRIPTS := scripts
 DIRBUILDS := output
 DIRWORK := $(shell pwd -P)
 
-.PHONY: all clean pull check assets
+.PHONY: all clean check assets
 .PHONY: rules html pdf epub force
 
 all: clean html pdf epub rules
 clean:
 	rm -rf $(DIRBUILDS);
 
-pull:
-	docker pull $(DOCKER);
-
 check: check-rules
 check-rules: check-rules-duplicates check-rules-incorrects
 check-rules-duplicates:
-	@DUPLICATED="$$(grep -roE "\[#[0-9]+]" $(DIRCONTENTS) | sort |uniq -d)"; \
+	@DUPLICATED="$$(grep -rohE "\[#[0-9]+]" $(DIRCONTENTS) | sort |uniq -d)"; \
 	if [ -n "$${DUPLICATED}" ]; then \
     	echo "Duplicated Rule IDs: $$(echo "$${DUPLICATED}" | tr -d '\n')"; \
     	echo "Please make sure the Rule ID anchors are unique"; \
@@ -47,16 +42,13 @@ rules: check-rules
 	$(DIRSCRIPTS)/generate-rules-json.sh  | \
 	  jq -s '{rules: . | sort}' | tee $(DIRBUILDS)/rules >$(DIRBUILDS)/rules.json;
 
-html: check assets pull
-	docker run -v $(DIRWORK):$(DIRMOUNTS)/ ${DOCKER} asciidoctor \
-	  -D $(DIRMOUNTS)/$(DIRBUILDS) index.adoc;
+html: check assets
+	asciidoctor --failure-level=WARN -D $(DIRBUILDS) index.adoc;
 
-pdf: check pull
-	docker run -v $(DIRWORK):$(DIRMOUNTS)/ ${DOCKER} asciidoctor-pdf \
-	  -D $(DIRMOUNTS)/$(DIRBUILDS) index.adoc;
-	mv -f $(DIRBUILDS)/index.pdf $(DIRBUILDS)/zalando-guidelines.pdf;
+pdf: check
+	asciidoctor-pdf -D $(DIRBUILDS) index.adoc;
+	mv -f $(DIRBUILDS)/index.pdf $(DIRBUILDS)/api_style_guide.pdf;
 
-epub: check pull
-	docker run -v $(DIRWORK):$(DIRMOUNTS)/ ${DOCKER} asciidoctor-epub3 \
-	  -D $(DIRMOUNTS)/$(DIRBUILDS) index.adoc;
-	mv -f $(DIRBUILDS)/index.epub $(DIRBUILDS)/zalando-guidelines.epub;
+epub: check
+	asciidoctor-epub3 --failure-level=ERROR -D $(DIRBUILDS) index.adoc;
+	mv -f $(DIRBUILDS)/index.epub $(DIRBUILDS)/api_style_guide.epub;

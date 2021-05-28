@@ -38,7 +38,7 @@ following two options:
    information can either be provided via multiple query parameters or by a
    single structured URL encoded string.
 2. {POST} with body payload content: when a {GET} with URL encoded query parameters
-   is not possible, a {POST} request with body payload must be used, and explicitly 
+   is not possible, a {POST} request with body payload must be used, and explicitly
    documented with a hint like in the following example:
 
 [source,yaml]
@@ -93,7 +93,7 @@ resource was updated – with or without actual content returned), and {201} (if
 the resource was created)
 
 *Important:* It is good practice to prefer {POST} over {PUT} for creation of
-(at least top-level) resources. This leaves the resource ID management under 
+(at least top-level) resources. This leaves the resource ID management under
 control of the service and not the client, and focus {PUT} on its usage for updates.
 However, in situations where {PUT} is used for resource creation,
 the resource IDs are maintained by the client and passed as a URL path segment.
@@ -113,8 +113,8 @@ details and options.
 collection resource endpoint, but other semantics on single resources endpoint
 are equally possible. The semantic for collection endpoints is best described
 as _"please add the enclosed representation to the collection resource
-identified by the URL"_. The semantic for single resource endpoints is best described 
-as _"please execute the given well specified request on the resource identified 
+identified by the URL"_. The semantic for single resource endpoints is best described
+as _"please execute the given well specified request on the resource identified
 by the URL"_.
 
 * on a successful {POST} request, the server will create one or multiple new
@@ -124,13 +124,13 @@ been updated), {201} (if resources have been created), {202} (if the request
 was accepted but has not been finished yet), and exceptionally {204} with
 {Location} header (if the actual resource is not returned).
 
-*Note:* By using {POST} to create resources the resource ID must not be passed as 
-request input date by the client, but created and maintained by the service and 
-returned with the response payload. 
+*Note:* By using {POST} to create resources the resource ID must not be passed as
+request input date by the client, but created and maintained by the service and
+returned with the response payload.
 
-Apart from resource creation, {POST} should be also used for scenarios that cannot 
-be covered by the other methods sufficiently. However, in such cases make sure to 
-document the fact that {POST} is used as a workaround (see e.g. {GET-with-Body}). 
+Apart from resource creation, {POST} should be also used for scenarios that cannot
+be covered by the other methods sufficiently. However, in such cases make sure to
+document the fact that {POST} is used as a workaround (see e.g. {GET-with-Body}).
 
 *Hint:* Posting the same resource twice is *not* required to be <<idempotent>>
 (check <<149>>) and may result in multiple resources. However, you <<229>> to
@@ -239,8 +239,8 @@ details).
 In rare cases {DELETE} may require additional information, that cannot be
 classified as filter parameters and thus should be transported via request body payload, to
 perform the operation. Since {RFC-7231}#section-4.3.5[RFC-7231] states, that
-{DELETE} has an undefined semantic for payloads, we recommend to utilize {POST}. 
-In this case the POST endpoint must be documented with the hint {DELETE-with-Body} 
+{DELETE} has an undefined semantic for payloads, we recommend to utilize {POST}.
+In this case the POST endpoint must be documented with the hint {DELETE-with-Body}
 analog to how it is defined for {GET-with-Body}. The response status code of
 {DELETE-with-Body} requests should be similar to usual {DELETE} requests.
 
@@ -353,7 +353,7 @@ following table showing the major properties of each pattern:
 | Applicable with                       | {PATCH} | {POST}  | {POST}/{PATCH}
 | HTTP Standard                         | {YES}   | {NO}    | {NO}
 | Prevents duplicate (zombie) resources | {YES}   | {YES}   | {NO}
-| Prevents concurrent lost updates      | {YES}   | {NO}    | {NO} 
+| Prevents concurrent lost updates      | {YES}   | {NO}    | {NO}
 | Supports safe retries                 | {YES}   | {YES}   | {YES}
 | Supports exact same response          | {NO}    | {NO}    | {YES}
 | Can be inspected (by intermediaries)  | {YES}   | {NO}    | {YES}
@@ -525,7 +525,7 @@ Feel free to also get some inspiration from:
 == {MUST} document implicit filtering
 
 Sometimes certain collection resources or queries will not list all the
-possible elements they have, but only those for which the current client 
+possible elements they have, but only those for which the current client
 is authorized to access.
 
 Implicit filtering could be done on:
@@ -533,8 +533,8 @@ Implicit filtering could be done on:
 * the collection of resources being returned on a {GET} request
 * the fields returned for the detail information of the resource
 
-In such cases, the fact that implicit filtering is applied must be documented 
-in the API specification's endpoint description. Consider <<227,caching aspects>> 
+In such cases, the fact that implicit filtering is applied must be documented
+in the API specification's endpoint description. Consider <<227,caching aspects>>
 when implicit filtering is provided. Example:
 
 If an employee of the company _Foo_ accesses one of our business-to-business
