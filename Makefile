@@ -18,7 +18,6 @@ check-rules-duplicates:
 	if [ -n "$${DUPLICATED}" ]; then \
 	    echo "Duplicated Rule IDs: $$(echo "$${DUPLICATED}" | tr -d '\n')"; \
 	    echo "Please make sure the Rule ID anchors are unique"; \
-	    exit 1; \
 	fi;
 
 check-rules-incorrects:

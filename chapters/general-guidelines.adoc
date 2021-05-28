@@ -93,7 +93,7 @@ However, you may use remote references to resources accessible by the following
 service URLs:
 
 * `{api-repository} (internal_link)` {dash} used
-  to refer to user defined, immutable API specification revisions published via the
+  to refer to user-defined, immutable API specification revisions published via the
   internal API repository.
 * `https://opensource.zalando.com/restful-api-guidelines/{model.yaml}` {dash}
   used to refer to guideline defined re-usable API fragments (see
