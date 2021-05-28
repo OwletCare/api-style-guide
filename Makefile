@@ -1,4 +1,3 @@
-DOCKER := asciidoctor/docker-asciidoctor:latest
 DIRCONTENTS := chapters
 DIRSCRIPTS := scripts
 DIRBUILDS := output
