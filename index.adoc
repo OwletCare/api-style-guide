@@ -56,7 +56,7 @@
 :SRE-Tracing: https://github.bus.zalan.do/SRE/opentracing
 
 // Attribute to improve design of key words in titles.
-:MUST: pass:[<spa class="must-keyword">MUST</span>]
+:MUST: pass:[<span class="must-keyword">MUST</span>]
 :SHOULD: pass:[<span class="should-keyword">SHOULD</span>]
 :MAY: pass:[<span class="may-keyword">MAY</span>]
 :MUST-SHOULD: pass:[<span class="must-keyword">MUST</span>/<span class="should-keyword">SHOULD</span>]
