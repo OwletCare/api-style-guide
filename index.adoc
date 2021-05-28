@@ -62,7 +62,7 @@
 :MUST-SHOULD: pass:[<span class="must-keyword">MUST</span>/<span class="should-keyword">SHOULD</span>]
 
 // Attributes to improvement design of common table elements.
-:NO: pass:[<span class="must-keyword">&#x2717;</span> No]
+:NO: pass:[<spa class="must-keyword">&#x2717;</span> No]
 :YES: pass:[<span class="may-keyword">&#x2714;</span> Yes]
 :AT: pass:[<span class="should-keyword">&#x26a0;&#xFE0F;</span>]
 
@@ -315,4 +315,4 @@ document.body.classList.add('toc-left');
 nav.append(ul);
 header.prepend(nav);
 </script>
-+++
+++++
