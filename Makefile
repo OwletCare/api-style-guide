@@ -3,8 +3,9 @@ DIRSCRIPTS := scripts
 DIRBUILDS := output
 DIRWORK := $(shell pwd -P)
 
-.PHONY: all clean check assets
-.PHONY: rules html pdf epub force
+.PHONY: all clean assets rules html pdf epub
+.PHONY: check check-rules check-rules-duplicates check-rules-incorrects
+.PHONY: next-rule-id
 
 all: clean html pdf epub rules
 clean:
