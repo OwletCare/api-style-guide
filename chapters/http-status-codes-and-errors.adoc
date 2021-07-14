@@ -53,13 +53,14 @@ An overview on the official error codes e.g. provides
 https://en.wikipedia.org/wiki/List_of_HTTP_status_codes[Wikipedia: HTTP status codes]
 (which also lists some unofficial codes e.g. defined by popular web servers like Nginx).
 
+
 [#150]
 == {SHOULD} only use most common HTTP status codes
 
-The most commonly used codes are best understood and listed below as subset of 
-the official HTTP status codes and consistent with their semantics in the RFCs. 
-We avoid less commonly used codes that easily create misconceptions due to 
-less familar semantics and API specific interpretations. 
+The most commonly used codes are best understood and listed below as subset of
+the official HTTP status codes and consistent with their semantics in the RFCs.
+We avoid less commonly used codes that easily create misconceptions due to
+less familar semantics and API specific interpretations.
 
 **Important:** As long as your HTTP status code usage is well covered by the
 semantic defined here, you should not describe it to avoid an overload with
