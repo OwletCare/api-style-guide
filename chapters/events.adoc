@@ -27,12 +27,12 @@ event type and the schema for its custom data.
 
 The basic model described above was originally developed in the
 https://github.com/zalando/nakadi[Nakadi project], which acts as a
-reference implementation (see also 
+reference implementation (see also
 https://apis.zalando.net/apis/nakadi-event-bus-api-definition/ui[Nakadi API[internal link]])
 of the event type registry, and as a validating
 publish/subscribe broker for event producers and consumers.
 
- 
+
 [#208]
 == {MUST} define events compliant with overall API guidelines
 
@@ -94,6 +94,46 @@ category.
 
 Event Types allow easier discovery of event information and ensure that
 information is well-structured, consistent, and can be validated.
+
+Event type owners must pay attention to the choice of compatibility
+mode. The mode provides a means to evolve the schema. The range of
+modes are designed to be flexible enough so that producers can evolve
+schemas while not inadvertently breaking existing consumers:
+
+* `none`: Any schema modification is accepted, even if it might break
+existing producers or consumers. When validating events, undefined
+properties are accepted unless declared in the schema.
+* `forward`: A schema `S1` is forward compatible if the previously
+registered schema, `S0` can read events defined by `S1` - that is,
+consumers can read events tagged with the latest schema version using
+the previous version as long as consumers follow the robustness
+principle described in the guideline's <<api-design-principles>>.
+* `compatible`: This means changes are fully compatible. A new schema,
+`S1`, is fully compatible when every event published since the first
+schema version will validate against the latest schema. In compatible
+mode, only the addition of new optional properties and definitions to an
+existing schema is allowed. Other changes are forbidden.
+
+The compatibility mode interact with revision numbers in the schema
+`version` field, which follows semantic versioning (MAJOR.MINOR.PATCH):
+
+* Changing an event type with compatibility mode `compatible` can lead
+to a PATCH or MINOR version revision. MAJOR breaking changes are not
+allowed.
+* Changing an event type with compatibility mode `forward` can lead to a
+PATCH or MINOR version revision. MAJOR breaking changes are not allowed.
+* Changing an event type with compatibility mode `none` can lead to
+PATCH, MINOR or MAJOR level changes.
+
+The following examples illustrate these relations:
+
+* Changes to the event type's `title` or `description` are considered
+PATCH level.
+* Adding new optional fields to an event type's schema is considered a
+MINOR level change.
+* All other changes are considered MAJOR level, such as renaming or
+removing fields, or adding new required fields.
+
 The core Event Type structure is shown below as an OpenAPI object
 definition:
 
@@ -278,7 +318,7 @@ conform to the functional naming depending on the <<219, audience>> as follows:
 <version>               ::= V[0-9.]* -- major version of non compatible schemas
 ----
 
-*Hint:* The following convention (e.g. used by legacy STUPS infrastructure) is deprecated 
+*Hint:* The following convention (e.g. used by legacy STUPS infrastructure) is deprecated
 and *only* allowed for <<223, internal>> event type names:
 
 [source,bnf]
@@ -306,7 +346,7 @@ of event.
 
 
 [#245]
-== {MUST} carefully define the compatibility mode 
+== {MUST} carefully define the compatibility mode
 
 Event type owners must pay attention to the choice of compatibility
 mode. The mode provides a means to evolve the schema. The range of
@@ -336,11 +376,11 @@ the Schema Object as defined by the OpenAPI Specifications to define event
 schemas. This is particularly useful for events that represent data changes
 about resources also used in other APIs.
 
-The https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject[OpenAPI Schema Object] 
+The https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject[OpenAPI Schema Object]
 is an **extended subset** of
 http://json-schema.org/[JSON Schema Draft 4]. For convenience,
 we highlight some important differences below. Please refer to the
-https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject[OpenAPI Schema Object specification] 
+https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schemaObject[OpenAPI Schema Object specification]
 for details.
 
 As the OpenAPI Schema Object specification _removes_ some JSON Schema
@@ -414,19 +454,19 @@ defines a field to be of a different type that was already being
 emitted, or, is changing the type of an undefined field. Both of these
 are prevented by not using `additionalProperties`.
 
-See also rule <<111>> in the <<compatibility>> section for further guidelines 
+See also rule <<111>> in the <<compatibility>> section for further guidelines
 on the use of `additionalProperties`.
 
 
 [#246]
-== {MUST} use semantic versioning of event type schemas 
+== {MUST} use semantic versioning of event type schemas
 
-Event schemas must be versioned -- analog to <<116>> for REST API definitions. 
+Event schemas must be versioned -- analog to <<116>> for REST API definitions.
 The compatibility mode interact with revision numbers in the schema
 `version` field, which follows semantic versioning (MAJOR.MINOR.PATCH):
 
-* Changing an event type with compatibility mode `compatible` or `forward` 
-can lead to a PATCH or MINOR version revision. 
+* Changing an event type with compatibility mode `compatible` or `forward`
+can lead to a PATCH or MINOR version revision.
 MAJOR breaking changes are not allowed.
 * Changing an event type with compatibility mode `none` can lead to
 PATCH, MINOR or MAJOR level changes.
@@ -444,7 +484,7 @@ removing fields, or adding new required fields.
 //========================================================================================
 
 [[event-categories]]
-= EVENT Basics - Event Catagories 
+= EVENT Basics - Event Catagories
 
 An _event category_ describes a generic class of event types. The
 guidelines define two such categories:
@@ -457,7 +497,7 @@ guidelines define two such categories:
 [#198]
 == {MUST} ensure that events conform to an event category
 
-A category describes a predefined structure (e.g. including event 
+A category describes a predefined structure (e.g. including event
 metadata as part of the event payload) that event publishers must
 conform to along with standard information specific for the event category
 (e.g. the operation for data change events).
@@ -551,9 +591,9 @@ DataChangeEvent:
         - S: A snapshot of an entity at a point in time.
 ----
 
-The Data Change Event Category is structurally different to the General Event Category 
-by defining a field called `data` as container for the custom payload, as well as 
-specific information related to data changes in the `data_op`. 
+The Data Change Event Category is structurally different to the General Event Category
+by defining a field called `data` as container for the custom payload, as well as
+specific information related to data changes in the `data_op`.
 
 The following guidelines specifically apply to Data Change Events:
 
@@ -570,9 +610,9 @@ The following guidelines specifically apply to Data Change Events:
 == {MUST} provide mandatory event metadata
 
 The General and Data Change event categories share a common structure for _metadata_
-representing generic event information. Parts of the metadata is provided by the 
-Nakadi event messaging platform, but event identifier (eid) and event creation 
-timestamp (occured_at) have to be provided by the event producers. 
+representing generic event information. Parts of the metadata is provided by the
+Nakadi event messaging platform, but event identifier (eid) and event creation
+timestamp (occured_at) have to be provided by the event producers.
 The metadata structure is defined below as an OpenAPI Schema Object:
 
 [source,yaml]
@@ -598,13 +638,13 @@ EventMetadata:
       example: 'example.important-business-event'
     occurred_at:
       description: |
-         Technical timestamp of when the event object was created during processing 
-         of the business event by the producer application. Note, it may differ from 
-         the timestamp when the related real-world business event happened (e.g. when 
-         the packet was handed over to the customer), which should be passed separately 
-         via an event type specific attribute. 
-         Depending on the producer implementation, the timestamp is typically some 
-         milliseconds earlier than when the event is published and received by the 
+         Technical timestamp of when the event object was created during processing
+         of the business event by the producer application. Note, it may differ from
+         the timestamp when the related real-world business event happened (e.g. when
+         the packet was handed over to the customer), which should be passed separately
+         via an event type specific attribute.
+         Depending on the producer implementation, the timestamp is typically some
+         milliseconds earlier than when the event is published and received by the
          API event post endpoint server -- see below.
       type: string
       format: date-time
@@ -612,7 +652,7 @@ EventMetadata:
     received_at:
       description: |
         Timestamp of when the event was received via the API event post endpoints. 
-        It is automatically enriched, and events will be rejected if set by the 
+        It is automatically enriched, and events will be rejected if set by the
         event producer.
       type: string
       readOnly: true
