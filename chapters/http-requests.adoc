@@ -5,7 +5,7 @@
 [#148]
 == {MUST} use HTTP methods correctly
 
-Be compliant with the standardized HTTP method semantics 
+Be compliant with the standardized HTTP method semantics
 (see HTTP/1 {RFC-7230}[RFC-7230] and {RFC-7231}[RFC-7230] updates from 2014)
 summarized as follows:
 
@@ -95,10 +95,10 @@ resource was updated – with or without actual content returned), and {201} (if
 the resource was created)
 
 *Important:* It is good practice to prefer {POST} over {PUT} for creation of
-(at least top-level) resources. This leaves the resource identifier management under 
+(at least top-level) resources. This leaves the resource identifier management under
 control of the service and not the client, and focuses {PUT} on its usage for updates.
 However, in situations where all resource attributes including the identifier
-are under control of the client as input for the resource creation you should use 
+are under control of the client as input for the resource creation you should use
 {PUT} and pass the resource identifier via the URL path.
 Putting the same resource twice is required to be <<idempotent>> and to result
 in the same single resource instance (see <<149>>) without data duplication in case of repetition.
@@ -143,14 +143,14 @@ prevent this.
 [[patch]]
 === PATCH
 
-{PATCH} method extends HTTP via {RFC-5789}[RFC-5789] standard to update parts 
-of the resource objects where e.g. in contrast to {PUT} only a specific subset 
-of resource fields should be changed. The set of changes is represented 
-in a format called a _patch document_ passed as payload and identified by a 
-specific media type. The semantic is best 
+{PATCH} method extends HTTP via {RFC-5789}[RFC-5789] standard to update parts
+of the resource objects where e.g. in contrast to {PUT} only a specific subset
+of resource fields should be changed. The set of changes is represented
+in a format called a _patch document_ passed as payload and identified by a
+specific media type. The semantic is best
 described as _"please change the resource identified by the URL according to my
-patch document"_. The syntax and semantics of the patch document is not 
-defined in {RFC-5789}[RFC-5789] and must be described in the API specification 
+patch document"_. The syntax and semantics of the patch document is not
+defined in {RFC-5789}[RFC-5789] and must be described in the API specification
 by using specific media types.
 
 * {PATCH} requests are usually applied to single resources as patching entire
@@ -168,7 +168,7 @@ forced by a <<106,backwards compatible change>>). In preference order:
 
 1. use {PUT} with complete objects to update a resource as long as feasible
    (i.e. do not use {PATCH} at all).
-2. use {PATCH} with {RFC-7396}[JSON Merge Patch] standard, a 
+2. use {PATCH} with {RFC-7396}[JSON Merge Patch] standard, a
    specialized media type `application/merge-patch+json` for partial
    resource representation to update parts of resource objects.
 3. use {PATCH} with {RFC-6902}[JSON Patch] standard, a specialized media type
@@ -183,7 +183,7 @@ especially when trying to update single objects in large collections (as part
 of the resource). In this case {RFC-6902}[JSON Patch] is more powerful
 while still showing readable patch requests (see also
 http://erosb.github.io/post/json-patch-vs-merge-patch[JSON patch vs. merge]).
-JSON Patch supports changing of array elements identified via its index, but 
+JSON Patch supports changing of array elements identified via its index, but
 not via (key) fields of the elements as typically needed for collections.
 
 *Note:* Patching the same resource twice is *not* required to be <<idempotent>>
