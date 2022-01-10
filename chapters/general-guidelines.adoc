@@ -15,9 +15,9 @@ You must follow the <<api-first, API First Principle>>, more specifically:
 * You must design your APIs consistently with these guidelines; use our
   {zally-ui}[API Linter Service (internal_link)]
   for automated rule checks.
-* You must call for early review feedback from peers and client developers, and apply 
+* You must call for early review feedback from peers and client developers, and apply
   {api-review-proc}[our lightweight API review process (internal_link)]
-  for all component external APIs, i.e. all apis 
+  for all component external APIs, i.e. all apis
   with `x-api-audience =/= component-internal` (see <<219>>).
 
 
@@ -87,7 +87,7 @@ should not contain references to local or remote content, e.g. `../fragment.yaml
 `$ref: 'https://github.com/zalando/zally/blob/master/server/src/main/resources/api/zally-api.yaml#/schemas/LintingRequest'`.
 The reason is, that the content referred to is _in general_ *not durable* and
 *not immutable*. As a consequence, the semantic of an API may change in
-unexpected ways.
+unexpected ways. (For example, the second link is already outdated due to code restructuring, it would now need to be `$ref: 'https://github.com/zalando/zally/blob/main/server/zally-server/src/main/resources/api/zally-api.yaml#/schemas/LintingRequest'`.)
 
 However, you may use remote references to resources accessible by the following
 service URLs:
@@ -95,9 +95,9 @@ service URLs:
 * `{api-repository} (internal_link)` {dash} used
   to refer to user defined, immutable API specification revisions published via the
   internal API repository.
-* `https://opensource.zalando.com/restful-api-guidelines/{model.yaml}` {dash} used
-  to refer to guideline defined re-usable API fragments (see `{model.yaml}` files in
-  https://github.com/zalando/restful-api-guidelines/tree/master/models[restful-api-guidelines/models]
+* `https://opensource.zalando.com/restful-api-guidelines/{model.yaml}` {dash}
+  used to refer to guideline defined re-usable API fragments (see
+  `{model.yaml}` files in https://github.com/zalando/restful-api-guidelines/tree/main/models[restful-api-guidelines/models]
   for details).
 
 *Hint:* The formerly used remote references to the `Problem` API fragment
