@@ -7,11 +7,7 @@ Problem:
       description: >
         A URI reference that uniquely identifies the problem type only in the
         context of the provided API. Opposed to the specification in RFC-7807,
-<<<<<<< HEAD
         it is neither recommended to be dereferenceable and point to a
-=======
-        it is neither recommended to be dereferencable and point to a
->>>>>>> 5565fcab (COREE-1939/Update CSS (#5))
         human-readable documentation nor globally unique for the problem type.
       default: 'about:blank'
       example: '/problem/connection-error'

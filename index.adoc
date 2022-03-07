@@ -100,7 +100,6 @@
 :TRACE: pass:[<a href="#trace"><code>TRACE</code></a>]
 :ALL: pass:[<code>&lt;all&gt;</code>]
 
-
 // Attributes to improve design and linking of HTTP status codes
 :x00: pass:[<a href="#http-status-codes-and-errors" class="status-code">2xx</a>]
 :2xx: pass:[<a href="#success-codes" class="status-code">2xx</a>]
