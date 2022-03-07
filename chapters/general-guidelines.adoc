@@ -95,7 +95,7 @@ service URLs:
 * `{api-repository} (internal_link)` {dash} used
   to refer to user-defined, immutable API specification revisions published via the
   internal API repository.
-* `https://opensource.zalando.com/restful-api-guidelines/{model.yaml}` {dash}
+* `https://opensource.zalando.com/restful-api-guidelines/model.yaml` {dash}
   used to refer to guideline defined re-usable API fragments (see
   `{model.yaml}` files in https://github.com/zalando/restful-api-guidelines/tree/main/models[restful-api-guidelines/models]
   for details).

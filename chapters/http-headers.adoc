@@ -440,7 +440,7 @@ information.
 
 
 [#233]
-== {MUST} support {X-Flow-ID}
+== {MUST} support X-Flow-ID
 
 The {Flow-ID} is a generic parameter to be passed through service APIs and
 events and written into log files and traces. A consequent usage of the
