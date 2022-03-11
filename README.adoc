@@ -1,15 +1,10 @@
 [discrete]
-=== :warning: NOTE:
-This is a work in progress and is not yet to be used. See
+WARNING: This is a work in progress and is not yet to be used. See
 https://owletcare.atlassian.net/browse/COREE-156[COREE-156].
 
-= Developing Restful APIs: A Comprehensive Set of Guidelines by Zalando
+= Developing RESTful APIs: A Comprehensive Set of Guidelines by Owlet
 
-https://travis-ci.org/zalando/restful-api-guidelines[image:https://travis-ci.org/zalando/restful-api-guidelines.svg?branch=master[Build Status]]
-Latest published version:
-http://zalando.github.io/restful-api-guidelines/[*HTML*],
-http://zalando.github.io/restful-api-guidelines/zalando-guidelines.pdf[*PDF*],
-http://zalando.github.io/restful-api-guidelines/zalando-guidelines.epub[*EPUB3*]
+image:https://g.codefresh.io/api/badges/pipeline/owletcare/Core%20Experience%2Fasciidoc?type=cf-2&key=eyJhbGciOiJIUzI1NiJ9.NWRmYjlkZDZjNmRiMTFiYzBmZGQ3MTY4.2NXb5d_4_lo7zKa24tq93M2-YHazikKUW0TDdzUas2c["Codefresh build status", link="https://g.codefresh.io/pipelines/edit/new/builds?id=60afd8aaa2cbf6f9eba85572&pipeline=asciidoc&projects=Core%20Experience&projectId=5dfd46bb6baea5cfb6de77c4"]
 
 == Purpose
 
@@ -17,10 +12,9 @@ Great RESTful APIs look like they were designed by a single team. This
 promotes API adoption, reduces friction, and enables clients to use them
 properly. To build APIs that meet this standard, and to answer many
 common questions encountered along the way of RESTful API development,
-the Zalando Tech team has created this comprehensive set of guidelines.
-We have shared it with you to inspire additional discussion and
-refinement within and among your teams, and contribute our learnings and
-suggestions to the tech community at large.
+the Zalando Tech team has created this comprehensive set of guidelines. Owlet
+has taken these guidelines and improved upon them, based on the needs of Owlet
+and it's customers.
 
 == Usage
 
@@ -31,6 +25,29 @@ living, evolving document. We will revise and update based on our
 learnings and experiences.
 
 See link:BUILD.adoc[BUILD documentation] for technical details.
+
+=== Prerequesites
+
+In order to use AsciiDoc, which is what the styleguide is written in, there are
+a few requirements that need to be met.
+
+1. https://www.ruby-lang.org/en/documentation/installation/[Install Ruby]
+
+2. Install Asciidoctor
+
+    sudo gem install asciidoctor -v 2.0.15
+
+=== Running Locally
+
+Clone the repo and go to project directory
+
+----
+git clone https://github.com/OwletCare/api-style-guide.git
+
+cd api-style-guide
+----
+
+Use commands in link:Makefile[Makefile]
 
 == License
 
