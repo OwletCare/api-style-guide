@@ -53,3 +53,6 @@ Use commands in link:Makefile[Makefile]
 
 We have published these guidelines under the CC-BY (Creative commons
 Attribution 4.0) license. Please see link:LICENSE[LICENSE file].
+== Attributions
+
+link:ATTRIBUTION.adoc[Attributions]
