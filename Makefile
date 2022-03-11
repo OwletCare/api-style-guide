@@ -3,8 +3,9 @@ DIRSCRIPTS := scripts
 DIRBUILDS := output
 DIRWORK := $(shell pwd -P)
 
-.PHONY: all clean check assets
-.PHONY: rules html pdf epub force
+.PHONY: all clean assets rules html pdf epub
+.PHONY: check check-rules check-rules-duplicates check-rules-incorrects
+.PHONY: next-rule-id
 
 all: clean html pdf epub rules
 clean:
@@ -15,9 +16,9 @@ check-rules: check-rules-duplicates check-rules-incorrects
 check-rules-duplicates:
 	@DUPLICATED="$$(grep -rohE "\[#[0-9]+]" $(DIRCONTENTS) | sort |uniq -d)"; \
 	if [ -n "$${DUPLICATED}" ]; then \
-    	echo "Duplicated Rule IDs: $$(echo "$${DUPLICATED}" | tr -d '\n')"; \
-    	echo "Please make sure the Rule ID anchors are unique"; \
-    	exit 1; \
+	    echo "Duplicated Rule IDs: $$(echo "$${DUPLICATED}" | tr -d '\n')"; \
+	    echo "Please make sure the Rule ID anchors are unique"; \
+	    exit 1; \
 	fi;
 
 check-rules-incorrects:
