@@ -44,17 +44,17 @@ current guidelines - for sake of overall consistency.
 [[api-design-principles]]
 == API design principles
 
-We apply the RESTful web service principles to all kinds of application
+Apply the RESTful web service principles to all kinds of application
 service components, independently from whether they provide
 functionality via the internet or intranet.
 
-* We prefer REST-based APIs with JSON payloads
-* We prefer systems to be truly RESTful
+* Prefer REST-based APIs with JSON payloads
+* Prefer systems to be truly RESTful
 footnote:fielding-restful[Per definition of R.Fielding REST APIs have to support
-HATEOAS (maturity level 3). Our guidelines do not strongly advocate for
+HATEOAS (maturity level 3). These guidelines do not strongly advocate for
 full REST compliance, but limited hypermedia usage, e.g. for pagination
 (see <<hypermedia>>).
-However, we still use the term "RESTful API", due to the absence
+However, the term "RESTful API", will be used here, due to the absence
 of an alternative established term and to keep it like the majority
 of the web service industry that also use the term for their REST
 approximations — in fact, in today's industry full HATEOAS compliant
@@ -66,7 +66,8 @@ Robustness Principle] (see also https://tools.ietf.org/html/rfc1122[RFC 1122]):
 
 * Be liberal in what you accept, be conservative in what you send
 
-_Readings:_ Some interesting reads on the RESTful API design style and service architecture:
+_Readings:_ Some interesting reads on the RESTful API design style and service
+architecture:
 
 * Article:
 https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling[REST API Design - Resource Modeling]
@@ -90,34 +91,28 @@ Styles and the Design of Network-Based Software Architectures]
 
 In a nutshell API First requires two aspects:
 
-* Define APIs first, before coding its implementation, using a standard specification
-language
-* get early review feedback from peers and client developers
+* Define APIs first, before coding its implementation, using a standard
+specification language
+* Get early review feedback from peers and client developers
 
-By defining APIs outside the code, we want to facilitate early review
-feedback and also a development discipline that focus service interface
-design on...
+Defining APIs outside the code:
 
-* profound understanding of the domain and required functionality
-* generalized business entities / resources, i.e. avoidance of use case
-specific APIs
-* clear separation of WHAT vs. HOW concerns, i.e. abstraction from
-implementation aspects — APIs should be stable even if we replace
-complete service implementation including its underlying technology
-stack
+* Facilitate early review feedback.
+* Allows a good understanding of the domain and required functionality.
+* Allows generalized resources.
+    ** i.e. Use case specific APIs are avoided.
+* Allows a clear separation of WHAT vs. HOW concerns.
+    ** i.e. Abstraction from implementation aspects. APIs should be stable even if we replace complete service implementation including its underlying technology stack.
 
-Moreover, API definitions with standardized specification format also
-facilitate...
+API definitions with standardized specification format also facilitate:
 
-* single source of truth for the API specification; it is a crucial part
-of a contract between service provider and client users
-* infrastructure tooling for API discovery, API GUIs, API documents,
+* Single source of truth for the API specification. It is a crucial part
+of a contract between service provider and client users.
+* Infrastructure tooling for API discovery, API GUIs, API documents,
 automated quality checks
 
-Elements of API First are also this API Guidelines and a standardized
-API review process as to get early review feedback from
-peers and client developers. Peer review is important for us to get high
-quality APIs, to enable architectural and design alignment and to
+Peer review is important to get high
+quality APIs, enable architectural and design alignment and to
 supported development of client applications decoupled from service
 provider engineering life cycle.
 
