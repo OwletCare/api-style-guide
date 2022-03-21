@@ -12,9 +12,7 @@ Great RESTful APIs look like they were designed by a single team. This
 promotes API adoption, reduces friction, and enables clients to use them
 properly. To build APIs that meet this standard, and to answer many
 common questions encountered along the way of RESTful API development,
-the Zalando Tech team has created this comprehensive set of guidelines. Owlet
-has taken these guidelines and improved upon them, based on the needs of Owlet
-and it's customers.
+the Owlet team has created this set of guidelines.
 
 == Usage
 
