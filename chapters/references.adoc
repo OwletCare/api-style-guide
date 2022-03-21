@@ -59,5 +59,3 @@ This section collects links to documents to which we refer, and base our guideli
 == Blogs
 
 * *http://restful-api-design.readthedocs.org/en/latest/[Lessons-learned blog: Thoughts on RESTful API Design]*
-
-
