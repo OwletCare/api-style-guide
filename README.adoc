@@ -31,11 +31,23 @@ See link:BUILD.adoc[BUILD documentation] for technical details.
 In order to use AsciiDoc, which is what the styleguide is written in, there are
 a few requirements that need to be met.
 
-1. https://www.ruby-lang.org/en/documentation/installation/[Install Ruby]
+1. https://github.com/postmodern/chruby[Install Ruby]
 
 2. Install Asciidoctor
 
     sudo gem install asciidoctor -v 2.0.15
+
+3. Install coderay
+
+    sudo gem install coderay
+
+4. Install asciidoctor-pdf
+
+    sudo gem install asciidoctor-pdf
+
+5. Install asciidoctor-epub3
+
+    sudo gem install asciidoctor-epub3
 
 === Running Locally
 
