@@ -374,7 +374,7 @@ paginating, you must stick to the following naming conventions:
 Personally Identifiable Information (PII) should not be sent in query
 parameters.  Query params are logged throughout various systems, which should
 be avoided for PII.  If PII is needed as query params, they should instead be
-send as a header, and referenced in the query param.
+sent as a header, and referenced in the query param.
 
 === Reasoning
 When sending queries, typically 2 methods can be employed:
