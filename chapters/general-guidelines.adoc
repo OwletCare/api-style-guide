@@ -61,7 +61,7 @@ The reason is, that the content referred to is _in general_ *not durable* and
 unexpected ways.
 
 You should, however, use local references to resources when the resource
-that is referenced;
+that is referenced:
 
 * Goes through a visible review process that requires other developers to verify changes.
 * Is defined as a re-usable API fragment.
