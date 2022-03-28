@@ -314,6 +314,7 @@ can take for header information:
 * Return a trio of `X-RateLimit` headers. These headers (described below) allow
   a server to express a service level in the form of a number of allowing
   requests within a given window of time and when the window is reset.
+  <!-- If adjusting X-RateLimit rules, see also rule #183 -->
 
 The `X-RateLimit` headers are:
 
