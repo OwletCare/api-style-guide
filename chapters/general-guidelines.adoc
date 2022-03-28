@@ -47,10 +47,8 @@ typically describes the following API aspects:
 * architecture context and major dependencies - including figures and
 sequence flows
 
-The user manual must be published online, e.g. via a documentation hosting
-platform service, GHE pages, or specific team web servers. Please do not forget
-to include a link to the API user manual into the API specification using the
-`#/externalDocs/url` property.
+The user manual should be published online, e.g. via a documentation hosting
+platform service, GHE pages, or specific team web servers.
 
 [#234]
 == {MUST} not use remote references
@@ -60,7 +58,7 @@ should not contain references to remote content, e.g.
 `$ref: 'https://owletcare.github.io/api-style-guide/money-1.0.0.yaml'`.
 The reason is, that the content referred to is _in general_ *not durable* and
 *not immutable*. As a consequence, the semantic of an API may change in
-unexpected ways. (For example, the second link is already outdated due to code restructuring.)
+unexpected ways.
 
 You should, however, use local references to resources when the resource
 that is referenced;
