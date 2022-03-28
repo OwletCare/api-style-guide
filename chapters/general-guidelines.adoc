@@ -24,8 +24,7 @@ We use the http://swagger.io/specification/[OpenAPI specification] as standard
 to define API specification files. API designers are required to provide the API
 specification using a single *self-contained YAML* file to improve readability.
 
-We require any version that is at least the *OpenAPI 3.0* version, and
-do not support *OpenAPI 2.0* (a.k.a. Swagger 2).
+We only support *OpenAPI 3.0*, and do not support *OpenAPI 2.0* (a.k.a. Swagger 2).
 
 The API specification files should be subject to version control using a source
 code management system - best together with the implementing sources.
