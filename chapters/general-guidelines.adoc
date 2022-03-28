@@ -23,13 +23,14 @@ You must follow the <<api-first, API First Principle>>, more specifically:
 We use the http://swagger.io/specification/[OpenAPI specification] as standard
 to define API specification files. API designers are required to provide the API
 specification using a single *self-contained YAML* file to improve readability.
+
 We require any version that is at least the *OpenAPI 3.0* version, and
 do not support *OpenAPI 2.0* (a.k.a. Swagger 2).
 
 The API specification files should be subject to version control using a source
 code management system - best together with the implementing sources.
 
-You <<192, must / should publish>> the component <<219, external / internal>>
+You <<192, must>> the component
 API specification with the deployment of the implementing service, and, hence,
 make it discoverable.
 
@@ -53,21 +54,20 @@ to include a link to the API user manual into the API specification using the
 `#/externalDocs/url` property.
 
 [#234]
-== {MUST} only use durable references
+== {MUST} not use remote references
 
-Normally, API specification files must be *self-contained*, i.e. files
-should not contain references to local or remote content, e.g. `../fragment.yaml#/element` or
+API specification files must be *self-contained*, i.e. files
+should not contain references to remote content, e.g.
 `$ref: 'https://owletcare.github.io/api-style-guide/money-1.0.0.yaml'`.
 The reason is, that the content referred to is _in general_ *not durable* and
 *not immutable*. As a consequence, the semantic of an API may change in
 unexpected ways. (For example, the second link is already outdated due to code restructuring.)
 
-However, you may use local and/or remote references to resources when the resource
+You should, however, use local references to resources when the resource
 that is referenced;
 
 * Goes through a visible review process that requires other developers to verify changes.
 * Is defined as a re-usable API fragment.
 
 Because these references are controlled, we can ensure that their content is *durable* and
-*immutable*. This allows to define API specifications by using fragments
-published via these sources, as suggested in <<151>>.
+*immutable*.
