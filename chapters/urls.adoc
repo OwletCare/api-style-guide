@@ -367,3 +367,33 @@ paginating, you must stick to the following naming conventions:
   <<cursor-based-pagination>> or <<pagination>> section below.
 * [[limit]]{limit}: client suggested limit to restrict the number of entries on
   a page. See <<pagination>> section below.
+
+[#1000]
+== {MUST} avoid PII in query parameters
+
+Personally Identifiable Information (PII) should not be sent in query
+parameters.  Query params are logged throughout various systems, which should
+be avoided for PII.  If PII is needed as query params, they should instead be
+sent as a header, and referenced in the query param.
+
+=== Reasoning
+When sending queries, typically 2 methods can be employed:
+
+. Send data in the body via a custom action (POST)
+. Send data in the query parameters
+
+Query parameters are logged by each system through which a query is passed.
+Headers, are opaque and not logged by default. By pointing the query parameter
+to the header we maintain explicit control in the query parameters, while also
+allowing a GET request to be made with opaque values.
+
+==== Bad
+```
+GET /accounts?query=personal%40identifiable.info%20AND%20firstName%3DBob&foo=bar
+```
+
+==== Good
+```
+Owlet-Query:email=personal@identifiable.info AND firstName=Bob
+GET /accounts?query=urn:request:headers.Owlet-Query&foo=bar
+```
