@@ -31,8 +31,8 @@ check-rules-incorrects:
 
 next-rule-id:
 	@IFS=$$'\r\n' GLOBIGNORE='*' command eval \
-	"RULE_IDS=($$(grep -rh "^.*\[#[0-9]\{1,5\}.*$$" $(DIRCONTENTS) | sort -r))"; \
-	echo $$(($$(echo $${RULE_IDS[0]} | tr -d '\[' | tr -d '\]' | tr -d '#') + 1));
+	"RULE_IDS=($$(grep -rh "^.*\[#[0-9]\{1,5\}.*$$" $(DIRCONTENTS) | tr -d '\[#' | tr -d '\]' | sort -n | tail -1))"; \
+	echo $$(($$(echo $${RULE_IDS[0]}) + 1));
 
 assets:
 	mkdir -p $(DIRBUILDS);

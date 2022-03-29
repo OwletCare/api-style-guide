@@ -1,12 +1,3 @@
-X-Flow-ID:
-  name: X-Flow-ID
-  description: |
-      A custom header that will be passed onto any further requests and can be used for investigation in error cases.
-  in: header
-  schema:
-    type: string
-    example: GKY7oDhpSiKY_gAAAABZ_A
-
 Cache-Control:
   in: header
   name: Cache-Control
