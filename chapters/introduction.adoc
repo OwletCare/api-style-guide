@@ -23,9 +23,8 @@ lightweight review procedure. When done this way API's are:
 
 Ideally, APIs will look like the same author created them.
 
-
-[[conventions-used-in-these-guidelines]]
-== Conventions used in these guidelines
+[discrete]
+=== Conventions used in these guidelines
 
 The requirement level keywords "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "MAY"
 used in this document (case insensitive) are to be
@@ -52,8 +51,7 @@ functionality via the internet or intranet.
 * Prefer systems to be truly RESTful
 footnote:fielding-restful[Per definition of R.Fielding REST APIs have to support
 HATEOAS (maturity level 3). These guidelines do not strongly advocate for
-full REST compliance, but limited hypermedia usage, e.g. for pagination
-(see <<hypermedia>>).
+full REST compliance, but limited hypermedia usage, e.g. for pagination.
 However, the term "RESTful API", will be used here, due to the absence
 of an alternative established term and to keep it like the majority
 of the web service industry that also use the term for their REST
@@ -102,7 +100,9 @@ Defining APIs outside the code:
 * Allows generalized resources.
     ** i.e. Use case specific APIs are avoided.
 * Allows a clear separation of WHAT vs. HOW concerns.
-    ** i.e. Abstraction from implementation aspects. APIs should be stable even if we replace complete service implementation including its underlying technology stack.
+    ** i.e. Abstraction from implementation aspects. APIs should be stable even
+    if we replace complete service implementation including its underlying
+    technology stack.
 
 API definitions with standardized specification format also facilitate:
 
@@ -114,3 +114,84 @@ automated quality checks
 Peer review is important to get high
 quality APIs, enable architectural and design alignment, and
 support development of client applications decoupled from API development.
+
+[[resource-oriented-design]]
+== Resource-oriented design
+
+Resource-oriented design is a pattern for specifying
+https://en.wikipedia.org/wiki/Remote_procedure_call[RPC] APIs, based on
+several high-level design principles:
+
+- The fundamental building blocks of an API are individually-named _resources_
+  (nouns) and the relationships and hierarchy that exist between them.
+- A small number of standard _methods_ (verbs) provide the semantics for most
+  common operations. However, custom methods are available in situations where
+  the standard methods do not fit.
+- Stateless protocol: Each interaction between the client and the server is
+  independent, and both the client and server have clear roles.
+
+There are similarities between these principles and some principles
+of https://en.wikipedia.org/wiki/Representational_state_transfer[REST];
+resource-oriented design borrows many principles from REST, while
+also defining its own patterns where appropriate.
+
+[[guidance]]
+=== Guidance
+
+When designing an API, consider the following (roughly in logical order):
+
+- The resources (nouns) the API will provide
+- The relationships and hierarchies between those resources
+- The schema of each resource
+- The methods (verbs) each resource provides, relying as much as possible on
+  the standard verbs.
+
+[[resources]]
+==== Resources
+
+A resource-oriented API **should** generally be modeled as a resource
+hierarchy, where each node is either a simple resource or a collection of
+resources.
+
+A _collection_ contains resources of _the same type_. For example, a publisher
+has the collection of books that it publishes. A resource usually has fields,
+and resources may have any number of sub-resources (usually collections).
+
+**Note:** While there is some conceptual alignment between storage systems and
+APIs, a service with a resource-oriented API is not necessarily a database, and
+has enormous flexibility in how it interprets resources and methods. API
+designers **should not** expect that their API will be reflective of their
+database schema. In fact, having an API that is identical to the underlying
+database schema is actually an anti-pattern, as it tightly couples the API
+to the underlying system.
+
+[[methods]]
+==== Methods
+
+Resource-oriented APIs emphasize resources (data model) over the methods
+performed on those resources (functionality). A typical resource-oriented API
+exposes a large number of resources with a small number of methods on each
+resource. The methods can be either the standard methods (./0131.md[Get],
+./0132.md[List], ./0133.md[Create], ./0134.md[Update], ./0135.md[Delete]), or
+./0136.md[custom methods].
+
+NOTE: A custom method in resource-oriented design does _not_ entail
+defining a new or custom HTTP verb. Custom methods use traditional HTTP verbs
+(usually `POST`) and define the custom verb in the URI.
+
+APIs **should** prefer standard methods over custom methods; the purpose of
+custom methods is to define functionality that does not cleanly map to any of
+the standard methods. Custom methods offer the same design freedom as
+traditional RPC APIs, which can be used to implement common programming
+patterns, such as database transactions, import and export, or data analysis.
+
+[[stateless-protocol]]
+==== Stateless protocol
+
+Resource-oriented APIs **must**
+operate over a stateless protocol: The fundamental behavior of any individual
+request is independent of other requests made by the caller.
+
+In an API with a stateless protocol, the server has the responsibility for
+persisting data, which may be shared between multiple clients, while clients
+have sole responsibility and authority for maintaining the application state.
