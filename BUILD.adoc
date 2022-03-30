@@ -1,10 +1,91 @@
 = Build
 
-== Build HTML site, PDF and EPUB3 locally
+Clean output directory, build HTML site, PDF and EPUB3 locally and run `rules`
 [source,bash]
 ----
 make all
 ----
+
+Remove output directory
+
+[source,bash]
+----
+make clean
+----
+
+Alias for `check-rules`
+
+[source,bash]
+----
+make check
+----
+
+Runs both `check-rules-duplicates` and `check-rules-incorrects`
+
+[source,bash]
+----
+make check-rules
+----
+
+Check for duplicate Rule ID anchors
+
+[source,bash]
+----
+make check-rules-duplicates
+----
+
+Check for incorrectly formatted Rule IDs
+
+[source,bash]
+----
+make check-rules-incorrects
+----
+
+Generate next available Rule ID
+
+[source,bash]
+----
+make next-rule-id
+----
+
+Make output directory, copy assets and models into output
+
+[source,bash]
+----
+make assets
+----
+
+Run `check-rules` and run `generate-rules-json` script
+
+[source,bash]
+----
+make rules
+----
+
+Run `check` and build just the HTML page locally
+
+[source,bash]
+----
+make html
+----
+
+Run `check` and build just the PDF page locally
+
+[source,bash]
+----
+make pdf
+----
+
+Run `check` and build just the epub page locally
+
+[source,bash]
+----
+make epub
+----
+
+== Linting
+
+We will use Tidy HTML in order to lint which also runs in our pipeline. Most systems should already come with it installed but if your system doesn't, you can find instructions to install it https://www.html-tidy.org/#homepage19700601get_tidy[here].
 
 == Generate Custom CSS
 
@@ -16,3 +97,4 @@ This script clones the factory repository, installs the dependencies and generat
 ----
 .scripts/build-css.sh
 ----
+
