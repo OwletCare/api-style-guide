@@ -89,7 +89,7 @@ Styles and the Design of Network-Based Software Architectures]
 [[api-first]]
 == API first
 
-In a nutshell API First requires two aspects:
+API First requires two aspects:
 
 * Define APIs first, before coding its implementation, using a standard
 specification language
@@ -112,27 +112,5 @@ of a contract between service provider and client users.
 automated quality checks
 
 Peer review is important to get high
-quality APIs, enable architectural and design alignment and to
-supported development of client applications decoupled from service
-provider engineering life cycle.
-
-It is important to learn, that API First is *not in conflict with the
-agile development principles* that we love. Service applications should
-evolve incrementally — and so its APIs. Of course, our API specification
-will and should evolve iteratively in different cycles; however, each
-starting with draft status and _early_ team and peer review feedback.
-API may change and profit from implementation concerns and automated
-testing feedback. API evolution during development life cycle may
-include breaking changes for not yet productive features and as long as
-we have aligned the changes with the clients. Hence, API First does
-_not_ mean that you must have 100% domain and requirement understanding
-and can never produce code before you have defined the complete API and
-get it confirmed by peer review.
-
-On the other hand, API First obviously is in conflict with the bad
-practice of publishing API definition and asking for peer review after
-the service integration or even the service productive operation has
-started. It is crucial to request and get early feedback — as early as
-possible, but not before the API changes are comprehensive with focus
-to the next evolution step and have a certain quality (including API
-Guideline compliance), already confirmed via team internal reviews.
+quality APIs, enable architectural and design alignment, and
+support development of client applications decoupled from API development.
