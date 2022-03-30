@@ -6,16 +6,12 @@
 == {MUST} secure endpoints
 
 Every API endpoint must be protected and armed with authentication and authorization.
-As part of the API definition you must specify how you protect your API using
-either the `http` typed `bearer` or `oauth2` typed security schemes defined in the
+As part of the API definition you must specify how you protect your API using the
+security schemes defined in the
 https://swagger.io/docs/specification/authentication/[OpenAPI Authentication Specification].
 
-The majority of our APIs (especially the company internal APIs) are protected
-using JWT tokens provided by the platform IAM token service. In these situations
-you should use the `http` typed
-https://swagger.io/docs/specification/authentication/bearer-authentication/[Bearer Authentication]
-security scheme -- it is based on OAuth2.0 {RFC-6750}[RFC 6750] defining the standard header
-`Auhorization: Bearer <token>`.
+The majority of our APIs are protected via API Key, JWT Token, Basic Auth,
+or Certificate Auth.
 The following code snippet shows how to define the bearer security scheme.
 
 [source,yaml]
@@ -28,16 +24,7 @@ components:
       bearerFormat: JWT
 ----
 
-The bearer security schema can than be applied to all API endpoints, e.g. requiring
-the token to have `api-repository.read` scope for permission as follows (see
-also <<105>>):
-
-[source,yaml]
-----
-security:
-  - BearerAuth: [ api-repository.read ]
-----
-
+The bearer security schema can than be applied to all API endpoints.
 
 In other, more specific situations e.g. with customer and partner facing APIs you
 may use other OAuth 2.0 authorization flows as defined by {RFC-6749}[RFC 6749].
