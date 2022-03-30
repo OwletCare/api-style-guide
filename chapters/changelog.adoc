@@ -4,13 +4,13 @@
 
 This change log only contains major changes and lists major changes since October 2016.
 
-Non-major changes are editorial-only changes or minor changes of existing guidelines, e.g. adding new error code or specific example. 
+Non-major changes are editorial-only changes or minor changes of existing guidelines, e.g. adding new error code or specific example.
 Major changes are changes that come with additional obligations, or even change an existing guideline obligation.
 Major changes are listed as "Rule Changes" below.
 
-*Hint:* Most recent major changes might be missing in the list since we update it 
+*Hint:* Most recent major changes might be missing in the list since we update it
 only occasionally, not with each pull request, to avoid merge commits.
-Please have a look at the 
+Please have a look at the
 https://github.com/zalando/restful-api-guidelines/commits/master[commit list in Github]
 to see a list of all changes.
 
@@ -24,7 +24,7 @@ to see a list of all changes.
 * `2021-10-12`: improve clarity on {PATCH} usage in rule <<148>>.
 * `2021-08-24`: improve clarity on {PUT} usage in rule <<148>>.
 * `2021-08-24`: only use codes registered via IANA in rule <<243>>.
-* `2021-08-17`: update formats per OpenAPI 3.1 in <<238>>. 
+* `2021-08-17`: update formats per OpenAPI 3.1 in <<238>>.
 * `2021-06-22`: <<238>> changed from {SHOULD} to {MUST}; consistency for rules around standards for data.
 * `2021-06-03`: <<104>> with clear distinction of OpenAPI security schemes, favoring `bearer` to `oauth2`.
 * `2021-06-01`: resolve uncertainties around 'occurred_at' semantics of <<event-metadata, event metadata>>.
