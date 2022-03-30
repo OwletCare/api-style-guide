@@ -219,7 +219,7 @@ Please see the following rules for detailed functional naming patterns:
 
 
 *Internal Guideance*:  You _must_ use the simple
-{functional-name-registry}[functional name registry (internal_link)] 
+{functional-name-registry}[functional name registry (internal_link)]
 to register your functional name before using
 it. The registry is a centralized infrastructure service to ensure uniqueness
 of your functional names (and available domains -- including subdomains) and
