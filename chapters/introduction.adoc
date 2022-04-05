@@ -1,42 +1,44 @@
 [[introduction]]
 = Introduction
 
-API's following this guide provide functionality via RESTful APIs with a JSON
+APIs following this guide provide functionality via RESTful APIs with a JSON
 payload. Engineering teams own, deploy and operate these microservices. APIs
-most express what our systems do. API's are to be designed with
+express what our systems do. APIs are to be designed with a
 high-quality and a long-lasting mindset.
 
 "API First" is a key
-engineering principle in regards to API's. Microservice development begins with
-API's
+engineering principle for APIs. Microservice development begins with
+APIs
 defined outside the code and involves peer-review
 feedback to achieve high-quality APIs. API First encompasses a set of
 quality-related standards and fosters a peer review culture including a
-lightweight review procedure. When done this way API's are:
+lightweight review procedure. When done this way APIs are:
 
 * Easy to understand and learn
 * General and abstracted from specific implementation and use cases
 * Robust and easy to use
-* Have a common look and feel
-* Follow consistent RESTful style and syntax
-* Consistent with other teams’ APIs and global architecture
+* A common look and feel
+* A consistent RESTful style and syntax
+* Consistent with other teams' APIs and global architecture
 
 Ideally, APIs will look like the same author created them.
 
 [discrete]
 === Conventions used in these guidelines
 
-The requirement level keywords "MUST", "MUST NOT", "SHOULD", "SHOULD NOT", "MAY"
-used in this document (case insensitive) are to be
+The requirement level keywords "MUST", "MUST NOT", "SHOULD", "SHOULD NOT" and
+"MAY" used in this document (case insensitive) are to be
 interpreted as described in https://www.ietf.org/rfc/rfc2119.txt[RFC
 2119].
 In case guidelines are changing, following rules apply:
 
-* Existing APIs if updated can be versioned for a new update
+* Existing APIs can stick to the old API guidelines the API was built with, but
+if you want to update the API for new guidelines, make a version change to the
+API for the new style guide changes.
 * New APIs have to respect the current guidelines
 * Clients of existing APIs will expect no change to API functionality
 
-API's that becomes public,
+APIs that becomes public,
 externally available, should be re-reviewed and changed according to
 current guidelines - for sake of overall consistency.
 
@@ -44,7 +46,7 @@ current guidelines - for sake of overall consistency.
 == API design principles
 
 Apply the RESTful web service principles to all kinds of application
-service components, independently from whether they provide
+service components, whether they provide
 functionality via the internet or intranet.
 
 * Prefer REST-based APIs with JSON payloads
@@ -95,12 +97,10 @@ specification language
 
 Defining APIs outside the code:
 
-* Facilitate early review feedback.
+* Facilitates early review feedback.
 * Allows a good understanding of the domain and required functionality.
-* Allows generalized resources.
-    ** i.e. Use case specific APIs are avoided.
 * Allows a clear separation of WHAT vs. HOW concerns.
-    ** i.e. Abstraction from implementation aspects. APIs should be stable even
+    ** Abstraction from implementation aspects. APIs should be stable even
     if we replace complete service implementation including its underlying
     technology stack.
 
@@ -113,7 +113,7 @@ automated quality checks
 
 Peer review is important to get high
 quality APIs, enable architectural and design alignment, and
-support development of client applications decoupled from API development.
+supports development of client applications decoupled from API development.
 
 [[resource-oriented-design]]
 == Resource-oriented design
@@ -171,9 +171,9 @@ to the underlying system.
 Resource-oriented APIs emphasize resources (data model) over the methods
 performed on those resources (functionality). A typical resource-oriented API
 exposes a large number of resources with a small number of methods on each
-resource. The methods can be either the standard methods (./0131.md[Get],
-./0132.md[List], ./0133.md[Create], ./0134.md[Update], ./0135.md[Delete]), or
-./0136.md[custom methods].
+resource. The methods can be either the standard methods like
+https://github.com/OwletCare/api-style-guide/blob/master/chapters/http-requests.adoc[
+GET, PUT, POST, PATCH, DELETE or custom methods].
 
 NOTE: A custom method in resource-oriented design does _not_ entail
 defining a new or custom HTTP verb. Custom methods use traditional HTTP verbs
