@@ -49,7 +49,7 @@ services in a backward-compatible way:
 * Input fields may have (complex) constraints being validated via server-side
   business logic. Never change the validation logic to be more restrictive and
   make sure that all constraints are clearly defined in description.
-* Use {x-extensible-enum}, if range is used for output parameters and likely to
+* Use <<112, x-extensible-enum>>, if range is used for output parameters and likely to
   be extended with growing functionality. It defines an open list of explicit
   values and clients must be agnostic to new values.
 
