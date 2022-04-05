@@ -1,0 +1,3 @@
+= Attribution
+
+This project is based on principles from the link:https://opensource.zalando.com/restful-api-guidelines/[Zalando Style Guide] and link:https://google.aip.dev/1[Google AIPs].
