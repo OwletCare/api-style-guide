@@ -58,7 +58,7 @@
 :ISO-639-1: https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 :ISO-4217: https://en.wikipedia.org/wiki/ISO_4217
 
-// links to internal 
+// links to internal
 :api-guild: https://api.docs.zalando.net/
 :nakadi-api: https://apis.zalando.net/apis/nakadi-event-bus-api-definition/ui
 :api-audience-narrative: https://apis.zalando.net/redirect/85ee93a3-7a78-4461-8bf1-08ffdaebcd18
@@ -223,7 +223,7 @@
 
 
 = Zalando RESTful API and Event Guidelines
-link:https://github.com/zalando/restful-api-guidelines[Github Repository] as part of 
+link:https://github.com/zalando/restful-api-guidelines[Github Repository] as part of
 link:https://opensource.zalando.com/[Zalando SE Opensource]
 
 image::assets/api-zalando-small.jpg[API Guild Logo]
@@ -237,8 +237,6 @@ endif::ebook-format[]
 :sectnums:
 
 include::chapters/introduction.adoc[]
-
-include::chapters/design-principles.adoc[]
 
 include::chapters/general-guidelines.adoc[]
 
