@@ -24,7 +24,7 @@ components:
       bearerFormat: JWT
 ----
 
-The bearer security schema can than be applied to all API endpoints.
+The bearer security schema can then be applied to all API endpoints.
 
 In other, more specific situations e.g. with customer and partner facing APIs you
 may use other OAuth 2.0 authorization flows as defined by {RFC-6749}[RFC 6749].
