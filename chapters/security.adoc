@@ -6,16 +6,12 @@
 == {MUST} secure endpoints
 
 Every API endpoint must be protected and armed with authentication and authorization.
-As part of the API definition you must specify how you protect your API using
-either the `http` typed `bearer` or `oauth2` typed security schemes defined in the
+As part of the API definition you must specify how you protect your API using the
+security schemes defined in the
 https://swagger.io/docs/specification/authentication/[OpenAPI Authentication Specification].
 
-The majority of our APIs (especially the company internal APIs) are protected
-using JWT tokens provided by the platform IAM token service. In these situations
-you should use the `http` typed
-https://swagger.io/docs/specification/authentication/bearer-authentication/[Bearer Authentication]
-security scheme -- it is based on OAuth2.0 {RFC-6750}[RFC 6750] defining the standard header
-`Auhorization: Bearer <token>`.
+The majority of our APIs are protected via API Key, JWT Token, Basic Auth,
+or Certificate Auth.
 The following code snippet shows how to define the bearer security scheme.
 
 [source,yaml]
@@ -28,16 +24,7 @@ components:
       bearerFormat: JWT
 ----
 
-The bearer security schema can than be applied to all API endpoints, e.g. requiring
-the token to have `api-repository.read` scope for permission as follows (see
-also <<105>>):
-
-[source,yaml]
-----
-security:
-  - BearerAuth: [ api-repository.read ]
-----
-
+The bearer security schema can then be applied to all API endpoints.
 
 In other, more specific situations e.g. with customer and partner facing APIs you
 may use other OAuth 2.0 authorization flows as defined by {RFC-6749}[RFC 6749].
@@ -51,10 +38,10 @@ because it exposes authentication server address details and may make use of red
 
 
 [#105]
-== {MUST} define and assign permissions (scopes)
+== {MAY} define and assign permissions (scopes)
 
-APIs must define permissions to protect their resources. Thus, at least one
-permission must be assigned to each API endpoint.
+APIs may define permissions to protect their resources. Thus, at least one
+permission may be assigned to each API endpoint.
 
 The naming schema for permissions corresponds to the naming schema for <<224,
 hostnames>> and <<213, event type names>>. Please refer to <<225>> for
@@ -89,12 +76,12 @@ designing permission names and see the following examples.
 ////
 
 *Note:* APIs should stick to component specific permissions without resource
-extension to avoid the complexity of too many fine grained permissions. For the
+extension to avoid the complexity of too many fine-grained permissions. For the
 majority of use cases, restricting access for specific API endpoints using read
 or write is sufficient.
 
-The defined permissions are than assigned to each API endpoint based on the
-security schema (see example in <<104, previous section>>) by specifying the
+The defined permissions are then assigned to each API endpoint based on the
+security schema by specifying the
 https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#securityRequirementObject[security requirement]
 as follows:
 
@@ -108,32 +95,11 @@ paths:
         - BearerAuth: [ business-partner-service.read ]
 ----
 
-In some cases a whole API or selected API endpoints may not require speciifc
-permissions, e.g. if information is public or protected by object level
-authorization. To make this explicit you should assign the `uid` pseudo
-permission, that is always available as OAuth2 default scope in Zalando.
-
-[source,yaml]
-----
-paths:
-  /public-information:
-    get:
-      summary: Provides public information about ...
-               Accessible by any user; no permissions needed.
-      security:
-        - BearerAuth: [ uid ]
-----
-
-*Hint:* Following a minimal a minimal API specification approach, the
-`Authorization`-header does not need to be defined on each API endpoint, since
-it is required and so to say implicitly defined via the security section.
-
 
 [#225]
 == {MUST} follow naming convention for permissions (scopes)
 
-As long as the <<223,functional naming>> is not yet supported by our permission registry,
-permission names in APIs must conform to the following naming pattern:
+If <<105,defining and assigning permissions>>, permission names in APIs must conform to the following naming pattern:
 
 [source,bnf]
 -----
