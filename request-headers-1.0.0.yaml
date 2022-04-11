@@ -1,0 +1,9 @@
+Owlet-Query:
+  name: Owlet-Query
+  description: |
+    A custom header to be used when a query must contain PII and must also be
+    sent via query parameters.
+  in: header
+  schema:
+    type: string
+    example: (firstName = Jane) AND (lastName = Doe)
