@@ -13,7 +13,7 @@ to allow for API management:
 - `#/info/description` containing a proper description of the API
 - `#/info/contact/{name,url,email}` containing the responsible team
 
-Following OpenAPI extension properties *may* be provided in addition:
+Following OpenAPI extension properties *should* be provided in addition:
 
 - `#/info/x-api-id` unique identifier of the API (<<215, see rule 215>>)
 - `#/info/x-audience` intended target audience of the API (<<219, see rule 219>>)
@@ -194,7 +194,7 @@ depending on the <<219, audience>> as follows (see <<223>> for details and
 -----
 <hostname>             ::= <functional-hostname> | <application-hostname>
 
-<functional-hostname>  ::= <functional-name>.owletcare.com
+<functional-hostname>  ::= <functional-name>.owletdata.com
 -----
 
 *Hint:* The following convention (e.g. used by legacy STUPS infrastructure) is deprecated
