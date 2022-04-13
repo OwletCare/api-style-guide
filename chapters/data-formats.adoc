@@ -118,14 +118,6 @@ issues with precision, e.g. whether to represent a timestamp as 1460062925,
 more effort to parse, avoid this ambiguity.
 
 
-[#127]
-== {SHOULD} use standard formats for time duration and interval properties
-
-Schema based JSON properties that are by design durations and intervals could
-be strings formatted as defined by {ISO-8601}[ISO 8601]
-({RFC-3339}#appendix-A[Appendix A of RFC 3339 contains a grammar] for durations).
-
-
 [#128]
 [#170]
 == {MUST} use standard formats for country, language and currency properties
