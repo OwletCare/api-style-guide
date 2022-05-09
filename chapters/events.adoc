@@ -301,9 +301,9 @@ stream (see <<204>>).
 
 
 [#213]
-== {MUST} follow naming convention for event type names
+== {SHOULD} follow naming convention for event type names
 
-Event type names must (or should, see <<223>> for details and definition)
+Event type names should, (see <<223>> for details and definition)
 conform to the functional naming depending on the <<219, audience>> as follows:
 
 [source,bnf]
@@ -315,16 +315,6 @@ conform to the functional naming depending on the <<219, audience>> as follows:
 <event-name>            ::= [a-z][a-z0-9-]* -- free event name (functional name)
 
 <version>               ::= V[0-9.]* -- major version of non compatible schemas
-----
-
-*Hint:* The following convention (e.g. used by legacy STUPS infrastructure) is deprecated
-and *only* allowed for <<223, internal>> event type names:
-
-[source,bnf]
-----
-<application-event-name> ::= [<organization-id>.]<application-id>.<event-name>
-<organization-id>  ::= [a-z][a-z0-9-]* -- organization identifier, e.g. team identifier
-<application-id>   ::= [a-z][a-z0-9-]* -- application identifier
 ----
 
 **Note:** consistent naming should be used whenever the same entity is exposed
