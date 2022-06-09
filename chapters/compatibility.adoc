@@ -76,12 +76,6 @@ Robustness Principle Reconsidered]) and a strong recommendation. Servers might
 want to take different approach but should be aware of the following problems
 and be explicit in what is supported:
 
-* Ignoring unknown input fields is actually not an option for {PUT}, since it
-  becomes asymmetric with subsequent {GET} response and HTTP is clear about the
-  {PUT} _replace_ semantics and default roundtrip expectations (see
-  {RFC-7231}#section-4.3.4[RFC 7231 Section 4.3.4]). Note, accepting (i.e. not
-  ignoring) unknown input fields and returning it in subsequent {GET} responses
-  is a different situation and compliant to {PUT} semantics.
 * Certain client errors cannot be recognized by servers, e.g. attribute name
   typing errors will be ignored without server error feedback. The server
   cannot differentiate between the client intentionally providing an additional
