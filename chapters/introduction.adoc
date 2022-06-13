@@ -1,65 +1,197 @@
 [[introduction]]
 = Introduction
 
-Zalando’s software architecture centers around decoupled microservices
-that provide functionality via RESTful APIs with a JSON payload. Small
-engineering teams own, deploy and operate these microservices in their
-AWS (team) accounts. Our APIs most purely express what our systems do,
-and are therefore highly valuable business assets. Designing
-high-quality, long-lasting APIs has become even more critical for us
-since we started developing our new open platform strategy, which
-transforms Zalando from an online shop into an expansive fashion
-platform. Our strategy emphasizes developing lots of public APIs for our
-external business partners to use via third-party applications.
+APIs following this guide provide functionality via RESTful APIs with a JSON
+payload. Engineering teams own, deploy and operate these microservices. APIs
+express what our systems do. APIs are to be designed with a
+high-quality and a long-lasting mindset.
 
-With this in mind, we’ve adopted "API First" as one of our key
-engineering principles. Microservices development begins with API
-definition outside the code and ideally involves ample peer-review
+"API First" is a key
+engineering principle for APIs. Microservice development begins with
+APIs
+defined outside the code and involves peer-review
 feedback to achieve high-quality APIs. API First encompasses a set of
 quality-related standards and fosters a peer review culture including a
-lightweight review procedure. We encourage our teams to follow them to
-ensure that our APIs:
+lightweight review procedure. When done this way APIs are:
 
-* are easy to understand and learn
-* are general and abstracted from specific implementation and use cases
-* are robust and easy to use
-* have a common look and feel
-* follow a consistent RESTful style and syntax
-* are consistent with other teams’ APIs and our global architecture
+* Easy to understand and learn
+* General and abstracted from specific implementation and use cases
+* Robust and easy to use
+* A common look and feel
+* A consistent RESTful style and syntax
+* Consistent with other teams' APIs and global architecture
 
-Ideally, all Zalando APIs will look like the same author created them.
+Ideally, APIs will look like the same author created them.
 
+[discrete]
+=== Conventions used in these guidelines
 
-[[conventions-used-in-these-guidelines]]
-== Conventions used in these guidelines
-
-The requirement level keywords "MUST", "MUST NOT", "REQUIRED", "SHALL",
-"SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
-"OPTIONAL" used in this document (case insensitive) are to be
+The requirement level keywords "MUST", "MUST NOT", "SHOULD", "SHOULD NOT" and
+"MAY" used in this document (case insensitive) are to be
 interpreted as described in https://www.ietf.org/rfc/rfc2119.txt[RFC
 2119].
-
-
-[[zalando-specific-information]]
-== Zalando specific information
-
-The purpose of our "RESTful API guidelines" is to define standards to
-successfully establish "consistent API look and feel" quality. The
-{api-guild}[API Guild (internal_link)]
-drafted and owns this document. Teams are responsible to fulfill
-these guidelines during API development and are encouraged to contribute
-to guideline evolution via pull requests.
-
-These guidelines will, to some extent, remain work in progress as our
-work evolves, but teams can confidently follow and trust them.
-
 In case guidelines are changing, following rules apply:
 
-* existing APIs don't have to be changed, but we recommend it
-* clients of existing APIs have to cope with these APIs based on
-outdated rules
-* new APIs have to respect the current guidelines
+* Existing APIs can stick to the old API guidelines the API was built with, but
+if you want to update the API for new guidelines, make a version change to the
+API for the new style guide changes.
+* New APIs have to respect the current guidelines
+* Clients of existing APIs will expect no change to API functionality
 
-Furthermore you should keep in mind that once an API becomes public
-externally available, it has to be re-reviewed and changed according to
+APIs that becomes public,
+externally available, should be re-reviewed and changed according to
 current guidelines - for sake of overall consistency.
+
+[[api-design-principles]]
+== API design principles
+
+Apply the RESTful web service principles to all kinds of application
+service components, whether they provide
+functionality via the internet or intranet.
+
+* Prefer REST-based APIs with JSON payloads
+* Prefer systems to be truly RESTful
+footnote:fielding-restful[Per definition of R.Fielding REST APIs have to support
+HATEOAS (maturity level 3). These guidelines do not strongly advocate for
+full REST compliance, but limited hypermedia usage, e.g. for pagination.
+However, the term "RESTful API", will be used here, due to the absence
+of an alternative established term and to keep it like the majority
+of the web service industry that also use the term for their REST
+approximations — in fact, in today's industry full HATEOAS compliant
+APIs are a very rare exception.]
+
+An important principle for API design and usage is Postel's
+Law, aka http://en.wikipedia.org/wiki/Robustness_principle[The
+Robustness Principle] (see also https://tools.ietf.org/html/rfc1122[RFC 1122]):
+
+* Be liberal in what you accept, be conservative in what you send
+
+_Readings:_ Some interesting reads on the RESTful API design style and service
+architecture:
+
+* Article:
+https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling[REST API Design - Resource Modeling]
+* Article:
+https://martinfowler.com/articles/richardsonMaturityModel.html[Richardson Maturity Model -- Steps toward the glory of REST]
+* Book:
+https://www.amazon.com/Irresistible-APIs-Designing-that-developers/dp/1617292559/[Irresistible
+APIs: Designing web APIs that developers will love]
+* Book:
+https://www.amazon.com/REST-Practice-Hypermedia-Systems-Architecture/dp/0596805829/[REST
+in Practice: Hypermedia and Systems Architecture]
+* Book: https://leanpub.com/build-apis-you-wont-hate[Build APIs You
+Won't Hate]
+* Fielding Dissertation:
+http://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm[Architectural
+Styles and the Design of Network-Based Software Architectures]
+
+
+[[api-first]]
+== API first
+
+API First requires two aspects:
+
+* Define APIs first, before coding its implementation, using a standard
+specification language
+* Get early review feedback from peers and client developers
+
+Defining APIs outside the code:
+
+* Facilitates early review feedback.
+* Allows a good understanding of the domain and required functionality.
+* Allows a clear separation of WHAT vs. HOW concerns.
+    ** Abstraction from implementation aspects. APIs should be stable even
+    if we replace complete service implementation including its underlying
+    technology stack.
+
+API definitions with standardized specification format also facilitate:
+
+* Single source of truth for the API specification. It is a crucial part
+of a contract between service provider and client users.
+* Infrastructure tooling for API discovery, API GUIs, API documents,
+automated quality checks
+
+Peer review is important to get high
+quality APIs, enable architectural and design alignment, and
+supports development of client applications decoupled from API development.
+
+[[resource-oriented-design]]
+== Resource-oriented design
+
+Resource-oriented design is a pattern for specifying
+https://en.wikipedia.org/wiki/Remote_procedure_call[RPC] APIs, based on
+several high-level design principles:
+
+- The fundamental building blocks of an API are individually-named _resources_
+  (nouns) and the relationships and hierarchy that exist between them.
+- A small number of standard _methods_ (verbs) provide the semantics for most
+  common operations. However, custom methods are available in situations where
+  the standard methods do not fit.
+- Stateless protocol: Each interaction between the client and the server is
+  independent, and both the client and server have clear roles.
+
+There are similarities between these principles and some principles
+of https://en.wikipedia.org/wiki/Representational_state_transfer[REST];
+resource-oriented design borrows many principles from REST, while
+also defining its own patterns where appropriate.
+
+[[guidance]]
+=== Guidance
+
+When designing an API, consider the following (roughly in logical order):
+
+- The resources (nouns) the API will provide
+- The relationships and hierarchies between those resources
+- The schema of each resource
+- The methods (verbs) each resource provides, relying as much as possible on
+  the standard verbs.
+
+[[resources]]
+==== Resources
+
+A resource-oriented API **should** generally be modeled as a resource
+hierarchy, where each node is either a simple resource or a collection of
+resources.
+
+A _collection_ contains resources of _the same type_. For example, a publisher
+has the collection of books that it publishes. A resource usually has fields,
+and resources may have any number of sub-resources (usually collections).
+
+**Note:** While there is some conceptual alignment between storage systems and
+APIs, a service with a resource-oriented API is not necessarily a database, and
+has enormous flexibility in how it interprets resources and methods. API
+designers **should not** expect that their API will be reflective of their
+database schema. In fact, having an API that is identical to the underlying
+database schema is actually an anti-pattern, as it tightly couples the API
+to the underlying system.
+
+[[methods]]
+==== Methods
+
+Resource-oriented APIs emphasize resources (data model) over the methods
+performed on those resources (functionality). A typical resource-oriented API
+exposes a large number of resources with a small number of methods on each
+resource. The methods can be either the standard methods like
+https://github.com/OwletCare/api-style-guide/blob/master/chapters/http-requests.adoc[
+GET, PUT, POST, PATCH, DELETE or custom methods].
+
+NOTE: A custom method in resource-oriented design does _not_ entail
+defining a new or custom HTTP verb. Custom methods use traditional HTTP verbs
+(usually `POST`) and define the custom verb in the URI.
+
+APIs **should** prefer standard methods over custom methods; the purpose of
+custom methods is to define functionality that does not cleanly map to any of
+the standard methods. Custom methods offer the same design freedom as
+traditional RPC APIs, which can be used to implement common programming
+patterns, such as database transactions, import and export, or data analysis.
+
+[[stateless-protocol]]
+==== Stateless protocol
+
+Resource-oriented APIs **must**
+operate over a stateless protocol: The fundamental behavior of any individual
+request is independent of other requests made by the caller.
+
+In an API with a stateless protocol, the server has the responsibility for
+persisting data, which may be shared between multiple clients, while clients
+have sole responsibility and authority for maintaining the application state.
