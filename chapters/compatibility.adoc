@@ -49,16 +49,8 @@ services in a backward-compatible way:
 * Input fields may have (complex) constraints being validated via server-side
   business logic. Never change the validation logic to be more restrictive and
   make sure that all constraints are clearly defined in description.
-* Enum ranges can be reduced when used as input parameters, only if the server
-  is ready to accept and handle old range values too. Enum range can be reduced
-  when used as output parameters.
-* Enum ranges cannot be extended when used for output parameters — clients may
-  not be prepared to handle it. However, enum ranges can be extended when used
-  for input parameters.
-* Use {x-extensible-enum}, if range is used for output parameters and likely to
-  be extended with growing functionality. It defines an open list of explicit
+* <<112, Enums>> are an open list of explicit
   values and clients must be agnostic to new values.
-* Support redirection in case an URL has to change {301} (Moved Permanently).
 
 
 [#109]
@@ -84,12 +76,6 @@ Robustness Principle Reconsidered]) and a strong recommendation. Servers might
 want to take different approach but should be aware of the following problems
 and be explicit in what is supported:
 
-* Ignoring unknown input fields is actually not an option for {PUT}, since it
-  becomes asymmetric with subsequent {GET} response and HTTP is clear about the
-  {PUT} _replace_ semantics and default roundtrip expectations (see
-  {RFC-7231}#section-4.3.4[RFC 7231 Section 4.3.4]). Note, accepting (i.e. not
-  ignoring) unknown input fields and returning it in subsequent {GET} responses
-  is a different situation and compliant to {PUT} semantics.
 * Certain client errors cannot be recognized by servers, e.g. attribute name
   typing errors will be ignored without server error feedback. The server
   cannot differentiate between the client intentionally providing an additional
@@ -121,7 +107,7 @@ Service clients should apply the robustness principle:
   http://martinfowler.com/bliki/TolerantReader.html["TolerantReader"] post),
   i.e. ignore new fields but do not eliminate them from payload if needed for
   subsequent {PUT} requests.
-** Be prepared that {x-extensible-enum} return parameter may deliver new values;
+** <<112, Enums>> may deliver new values;
   either be agnostic or provide default behavior for unknown values.
 ** Be prepared to handle HTTP status codes not explicitly specified in endpoint
   definitions. Note also, that status codes are extensible. Default handling is
@@ -283,7 +269,7 @@ level data structures, since they don't support compatible, future extensions.
 
 
 [#112]
-== {SHOULD} used open-ended list of values (`x-extensible-enum`) for enumerations
+== {SHOULD} used open-ended list of values for enumerations
 
 Enumerations are per definition closed sets of values that are assumed to be
 complete and not intended for extension. This closed principle of enumerations
@@ -291,26 +277,10 @@ imposes compatibility issues when an enumeration must be extended. To avoid
 these issues, we strongly recommend to use an open-ended list of values instead
 of an enumeration unless:
 
-1. the API has full control of the enumeration values, i.e. the list of values
+1. The API has full control of the enumeration values, i.e. the list of values
   does not depend on any external tool or interface, and
-2. the list of values is complete with respect to any thinkable and unthinkable
+2. The list of values is complete with respect to any thinkable and unthinkable
   future feature.
-
-To specify an open-ended list of values use the marker {x-extensible-enum} as
-follows:
-
-[source,yaml]
-----
-delivery_methods:
-  type: string
-  x-extensible-enum:
-    - PARCEL
-    - LETTER
-    - EMAIL
-----
-
-*Note:* {x-extensible-enum} is not JSON Schema conform but will be ignored by
-most tools.
 
 See <<240>> about enum value naming conventions.
 
