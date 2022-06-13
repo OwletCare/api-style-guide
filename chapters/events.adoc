@@ -1002,5 +1002,5 @@ consumers -
 known as a tuple).
 * Adding a new optional field to redefine the meaning of an existing
 field (also known as a co-occurrence constraint).
-* Adding a value to an enumeration (note that <<112,`x-extensible-enum`>>
+* Adding a value to an enumeration (note that <<112, extensible enum>>
 is not available in JSON Schema)

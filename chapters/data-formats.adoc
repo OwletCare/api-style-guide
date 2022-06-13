@@ -68,9 +68,8 @@ and everyone is encouraged to propose additions.
 [#171]
 == {MUST} define a format for number and integer types
 
-In <<238>> we added `bigint` and `decimal` to the OpenAPI defined formats.
-As an implication, you must always provide one of the formats `int32`, `int64`, `bigint`
-or `float`, `double`, `decimal` when you define an API property of
+You must always provide one of the formats `int32`, `int64`
+or `float`, `decimal` when you define an API property of
 JSON type `number` or `integer`.
 
 By this we prevent clients from guessing the precision incorrectly, and thereby
